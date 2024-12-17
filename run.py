@@ -1,7 +1,6 @@
-from app import create_app
+from app import create_app, socketio  # Ensure you import socketio
 
 app = create_app()
 
 if __name__ == '__main__':
-    # Use SocketIO to run the app
-    app.socketio.run(app, host='0.0.0.0', port=5000)
+    socketio.run(app, host='0.0.0.0', port=5000)
