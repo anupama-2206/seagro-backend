@@ -1,23 +1,8 @@
 # app/models.py
-from . import db
+# You do not need to import db from __init__.py as MongoDB is initialized in create_app()
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    bio = db.Column(db.String(255), nullable=True)
-
-class Course(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
-
-class Job(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
-
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    task = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+# If you need to define MongoDB-related functions, you can do so here.
+# Example MongoDB operation: User collection
+def get_user_collection(app):
+    mongo = app.mongo  # Access the app's mongo instance
+    return mongo.db.users
